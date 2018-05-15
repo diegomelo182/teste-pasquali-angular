@@ -1,3 +1,16 @@
-<p>
-  create-edit works!
-</p>
+<div class="container">
+  <h2 *ngIf="isCreate === true; else edit">Cadastrar</h2>
+  <ng-template #edit>
+    <h2>Editar</h2>
+  </ng-template>
+
+  <div *ngIf="isCreate" class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" (click)="setPersonType(0)" [ngClass]="{ 'active': personType === 0 }" class="btn btn-info">Pessoa Física</button>
+    <button type="button" (click)="setPersonType(1)" [ngClass]="{ 'active': personType === 1 }" class="btn btn-info">Pessoa Jurídica</button>
+  </div>
+
+  <app-form
+    [create]="isCreate"
+    [personType]="personType"
+  ></app-form>
+</div>

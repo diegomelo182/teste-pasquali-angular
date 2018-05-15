@@ -324,6 +324,12 @@ angular2-jwt@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/angular2-jwt/-/angular2-jwt-0.2.3.tgz#54efdda3ceedba85f6a37b165f22ac22b8adf021"
 
+angular2-text-mask@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/angular2-text-mask/-/angular2-text-mask-9.0.0.tgz#70490170a8096241fc3ce9482ed6a758ddbce8ea"
+  dependencies:
+    text-mask-core "^5.0.0"
+
 ansi-html@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/ansi-html/-/ansi-html-0.0.7.tgz#813584021962a9e9e6fd039f940d12f56ca7859e"
@@ -5655,6 +5661,10 @@ tar@^4:
     mkdirp "^0.5.0"
     safe-buffer "^5.1.2"
     yallist "^3.0.2"
+
+text-mask-core@^5.0.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/text-mask-core/-/text-mask-core-5.1.1.tgz#a7f65634e11236818fd36a92668e17bf9368f357"
 
 through2@^2.0.0:
   version "2.0.3"

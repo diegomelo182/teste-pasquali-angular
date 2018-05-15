@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-edit.component.scss']
 })
 export class CreateEditComponent implements OnInit {
+  isCreate = true;
+  personType = 0;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  setPersonType = (personType) => {
+    if (this.personType !== personType) {
+      this.personType = personType;
+    }
   }
 
 }

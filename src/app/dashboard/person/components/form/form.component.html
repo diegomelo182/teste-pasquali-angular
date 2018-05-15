@@ -1,3 +1,59 @@
-<p>
-  form works!
-</p>
+<form class="text-left" (ngSubmit)="submit()" [formGroup]="form" *ngIf="_personType === 0; else business">
+  <div class="alert alert-danger" role="alert" *ngIf="error">
+    Erro na validação dos campos, favor verifique se os dados estão preenchidos corretamente
+  </div>
+
+  <div formGroupName="person">
+    <div class="form-group">
+      <label for="inputName">Nome</label>
+      <input type="text" class="form-control" formControlName="name" id="inputName" aria-describedby="inputNameHelp" placeholder="Enter email">
+      <small *ngIf="form.get('person.name').touched && !form.get('person.name').valid" id="inputNameHelp" class="form-text text-muted">Campo inválido.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="inputCpf">CPF</label>
+      <input type="text" [textMask]="{mask: cpfMask, guide: false}" class="form-control" formControlName="cpf_cnpj" id="inputCpf" aria-describedby="inputCpfHelp" placeholder="Enter email">
+      <small *ngIf="form.get('person.cpf_cnpj').touched && !form.get('person.cpf_cnpj').valid" id="inputCpfHelp" class="form-text text-muted">Campo inválido.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="inputBday">Data aniversário</label>
+      <input type="text" [textMask]="{mask: dateMask, guide: false}" class="form-control" formControlName="bday" id="inputBday" aria-describedby="inputBdayHelp" placeholder="Enter email">
+      <small *ngIf="form.get('person.bday').touched && !form.get('person.bday').valid" id="inputBdayHelp" class="form-text text-muted">Campo inválido.</small>
+    </div>
+
+    <button [disabled]="!form.valid || loading" type="submit" class="btn btn-primary">{{ loading ? 'Carregando...' : 'Enviar'}}</button>
+    <button routerLink="/admin/people" type="button" class="btn btn-secundary">Cancelar</button>
+  </div>
+</form>
+
+<ng-template #business>
+  <form class="text-left" (ngSubmit)="submit()" [formGroup]="form">
+    <div class="alert alert-danger" role="alert" *ngIf="error">
+      Erro na validação dos campos, favor verifique se os dados estão preenchidos corretamente
+    </div>
+
+    <div formGroupName="person">
+      <div class="form-group">
+        <label for="inputName">Nome Fantasia</label>
+        <input type="text" class="form-control" formControlName="name" id="inputName" aria-describedby="inputNameHelp" placeholder="Enter email">
+        <small *ngIf="form.get('person.name').touched && !form.get('person.name').valid" id="inputNameHelp" class="form-text text-muted">Campo inválido.</small>
+      </div>
+
+      <div class="form-group">
+        <label for="inputBusinessName">Razão Social</label>
+        <input type="text" class="form-control" formControlName="business_name" id="inputBusinessName" aria-describedby="inputBusinessNameHelp" placeholder="Enter email">
+        <small *ngIf="form.get('person.business_name').touched && !form.get('person.business_name').valid" id="inputBusinessNameHelp" class="form-text text-muted">Campo inválido.</small>
+      </div>
+
+      <div class="form-group">
+        <label for="inputCpf">CNPJ</label>
+        <input type="text" [textMask]="{mask: cnpjMask, guide: false}" class="form-control" formControlName="cpf_cnpj" id="inputCpf" aria-describedby="inputCpfHelp" placeholder="Enter email">
+        <small *ngIf="form.get('person.cpf_cnpj').touched && !form.get('person.cpf_cnpj').valid" id="inputCpfHelp" class="form-text text-muted">Campo inválido.</small>
+      </div>
+
+      <button [disabled]="!form.valid || loading" type="submit" class="btn btn-primary">{{ loading ? 'Carregando...' : 'Enviar'}}</button>
+      <button routerLink="/admin/people" type="button" class="btn btn-secundary">Cancelar</button>
+    </div>
+  </form>
+</ng-template>

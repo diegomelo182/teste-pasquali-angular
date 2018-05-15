@@ -1,0 +1,29 @@
+<div class="bg">
+  <form class="form-signin" (ngSubmit)="submit()" [formGroup]="form">
+    <div formGroupName="auth">
+      <h2 class="form-signin-heading text-center">Login</h2>
+
+      <div *ngIf="error" class="alert alert-danger" role="alert">
+        Usuário ou senha inválido(s)
+      </div>
+
+      <label for="inputUser" class="sr-only">Usuário</label>
+      <input type="text" id="inputUser" class="form-control" placeholder="Usuário" formControlName="user" autofocus="">
+
+      <label for="inputPassword" class="sr-only">Senha</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Senha" formControlName="password" maxlength="32">
+      <button
+        class="btn btn-lg btn-primary btn-block"
+        type="submit"
+        [disabled]="!form.valid"
+      >{{ loading ? 'Carregando...' : 'Login' }}</button>
+    </div>
+  </form>
+
+  <div class="text-center">
+    <ul class="my-list">
+      <li>Usuário: admin</li>
+      <li>Senha: admin</li>
+    </ul>
+  </div>
+</div>

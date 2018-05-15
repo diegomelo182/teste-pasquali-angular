@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { PersonService } from '../../services/person.service.service';
 
@@ -10,14 +11,19 @@ import { PersonService } from '../../services/person.service.service';
 export class ListComponent implements OnInit {
   items = [];
   loading = false;
+  success = false;
   error = false;
   personType = 0;
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private personService: PersonService
   ) { }
 
   ngOnInit() {
+    if (this.activatedRoute.snapshot.queryParams['success']) {
+      this.success = true;
+    }
     this.fetchData();
   }
 

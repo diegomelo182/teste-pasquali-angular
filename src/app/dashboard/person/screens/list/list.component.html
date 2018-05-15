@@ -1,6 +1,10 @@
 <div class="container">
   <h2>Pessoas</h2>
 
+  <div class="alert alert-success" role="alert" *ngIf="success">
+    Cadastro/Edição realizada com successo!
+  </div>
+
   <div class="button-container">
     <button routerLink="create" class="btn btn-primary">
       Adicionar

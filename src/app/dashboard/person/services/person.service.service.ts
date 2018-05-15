@@ -12,7 +12,11 @@ export class PersonService {
     private httpClient: HttpClient
   ) { }
 
-  index = (params = {}) => {
-    return this.httpClient.get(`${environment.apiHost}people`, { params });
-  }
+  index = (params = {}) => this.httpClient.get(`${environment.apiHost}people`, { params });
+
+  create = (params = {}) => this.httpClient.post(`${environment.apiHost}people`, params);
+
+  update = (id, params = {}) => this.httpClient.put(`${environment.apiHost}people/${id}`, params);
+
+  remove = (id) => this.httpClient.delete(`${environment.apiHost}people/${id}`);
 }

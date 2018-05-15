@@ -57,7 +57,11 @@ export class FormComponent implements OnInit {
           ),
           bday: this.formBuilder.control(
             '',
-            [Validators.required, Validators.minLength(10)]
+            [
+              Validators.required,
+              Validators.minLength(10),
+              Validators.pattern(/([0-2][1-9]|3[0-1])\/(0[1-9]|1[0-2])\/(19[0-9]{2}|20[0-9]{2})/g)
+            ]
           )
         })
       });
@@ -85,7 +89,7 @@ export class FormComponent implements OnInit {
     if (this.form.valid) {
       this.error = false;
       const form = this.form.value;
-      form.kind = this._personType;
+      form.person.kind = this._personType;
       this.sendData.emit(form);
     } else {
       this.error = true;

@@ -9,8 +9,12 @@
     <button type="button" (click)="setPersonType(1)" [ngClass]="{ 'active': personType === 1 }" class="btn btn-info">Pessoa Jurídica</button>
   </div>
 
+  <p class="loading" *ngIf="loading">Carregando...</p>
+
   <app-form
+    [ngClass]="{ 'd-none': loading }"
     [create]="isCreate"
     [personType]="personType"
+    (sendData)="submit($event)"
   ></app-form>
 </div>

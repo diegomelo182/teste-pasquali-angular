@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { PersonService } from '../../services/person.service.service';
 
 @Component({
   selector: 'app-create-edit',
@@ -8,8 +11,13 @@ import { Component, OnInit } from '@angular/core';
 export class CreateEditComponent implements OnInit {
   isCreate = true;
   personType = 0;
+  loading = false;
+  error = false;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private personService: PersonService
+  ) { }
 
   ngOnInit() {
   }
@@ -18,6 +26,23 @@ export class CreateEditComponent implements OnInit {
     if (this.personType !== personType) {
       this.personType = personType;
     }
+  }
+
+  submit = (data) => {
+    this.loading = true;
+    this.personService.create(data)
+      .subscribe(
+        (response) => {
+          this.loading = false;
+          this.error = false;
+
+          this.router.navigate(['/admin/people'], { queryParams: { success: true } });
+        },
+        (response) => {
+          this.loading = false;
+          this.error = true;
+        }
+      );
   }
 
 }

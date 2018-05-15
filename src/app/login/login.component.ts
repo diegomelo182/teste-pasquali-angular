@@ -7,6 +7,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { LoginService } from './login.service';
 
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private loginService: LoginService
   ) { }
 
@@ -48,6 +50,8 @@ export class LoginComponent implements OnInit {
           (response: {token: string}) => {
             this.loading = false;
             sessionStorage.setItem('token', response.token);
+
+            this.router.navigate(['admin', 'home']);
           },
           (response) => {
             this.loading = false;

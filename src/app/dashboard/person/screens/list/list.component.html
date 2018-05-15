@@ -1,3 +1,73 @@
-<p>
-  list works!
-</p>
+<div class="container">
+  <h2>Pessoas</h2>
+
+  <div class="button-container">
+    <button routerLink="create" class="btn btn-primary">
+      Adicionar
+    </button>
+  </div>
+
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link" (click)="changeType(0)" [ngClass]="{ 'active': personType === 0  }">Física</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="changeType(1)" [ngClass]="{ 'active': personType === 1  }">Jurídica</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <div *ngIf="loading" class="text-center">
+        Carregando...
+      </div>
+
+      <div class="tables" *ngIf="!error || loading">
+
+        <table *ngIf="personType === 0" class="table table-sm table-bordered table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">CPF</th>
+              <th scope="col">Data Nascimento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of items">
+              <th scope="row">{{ item.id }}</th>
+              <td>{{ item.name }}</td>
+              <td>{{ item.cpf_cnpj }}</td>
+              <td>{{ item.bday | date: 'dd/MM/yyyy' }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table *ngIf="personType === 1" class="table table-sm table-bordered table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome Fantasia</th>
+              <th scope="col">Razão Social</th>
+              <th scope="col">CNPJ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of items">
+              <th scope="row">{{ item.id }}</th>
+              <td>{{ item.business_name }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.cpf_cnpj }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="error" class="error">
+        <p>Erro ao carregar os dados</p>
+        <button (click)="fetchData()" class="btn btn-primary">Tentar novamente</button>
+      </div>
+    </div>
+  </div>
+</div>

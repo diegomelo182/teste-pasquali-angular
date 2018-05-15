@@ -1,16 +1,20 @@
 <div class="card text-center">
   <div class="card-header">
-    <ul class="nav nav-tabs card-header-tabs">
+    <ul class="nav nav-pills card-header-pills">
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="persons">Pessoas</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="people">
+          <i class="fa fa-male" aria-hidden="true"></i> Pessoas
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="accounts">Contas</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="accounts">
+          <i class="fa fa-user" aria-hidden="true"></i> Contas
+        </a>
       </li>
       <li class="logout">
-        <button class="btn btn-danger" (click)="logout()">
-          <i class="fa fa-sign-in" aria-hidden="true"></i>
-        </button>
+        <a class="nav-link" (click)="logout()">
+          <i class="fa fa-sign-in" aria-hidden="true"></i> Sair
+        </a>
       </li>
     </ul>
   </div>

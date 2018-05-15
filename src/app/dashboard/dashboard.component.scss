@@ -1,3 +1,6 @@
+@import '../../variables';
+
 .logout {
-  float: right;
+  cursor: pointer;
+  color: $danger;
 }

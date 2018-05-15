@@ -6,6 +6,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { ListComponent } from './screens/list/list.component';
 import { CreateEditComponent } from './screens/create-edit/create-edit.component';
 import { FormComponent } from './components/form/form.component';
+import { PersonService } from './services/person.service.service';
 
 const modules = [
   CommonModule,
@@ -19,12 +20,19 @@ const components = [
   FormComponent
 ];
 
+const services = [
+  PersonService
+];
+
 @NgModule({
   imports: [
     ...modules
   ],
   declarations: [
     ...components
+  ],
+  providers: [
+    ...services
   ]
 })
 export class PersonModule { }

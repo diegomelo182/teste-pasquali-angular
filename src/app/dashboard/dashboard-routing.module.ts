@@ -18,7 +18,7 @@ const routes: Routes = [
         loadChildren: './account/account.module#AccountModule'
       },
       {
-        path: 'persons',
+        path: 'people',
         loadChildren: './person/person.module#PersonModule'
       }
     ]

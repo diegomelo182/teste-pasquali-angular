@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginService } from './login/login.service';
+import { InterceptorService } from './shared/interceptors/interceptor.service';
 
 const modules = [
   BrowserModule,
@@ -21,7 +22,8 @@ const components = [
 ];
 
 const services = [
-  LoginService
+  LoginService,
+  { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
 ];
 
 @NgModule({

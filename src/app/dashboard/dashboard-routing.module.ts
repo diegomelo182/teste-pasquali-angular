@@ -20,6 +20,10 @@ const routes: Routes = [
       {
         path: 'people',
         loadChildren: './person/person.module#PersonModule'
+      },
+      {
+        path: 'transferences',
+        loadChildren: './transferences/transferences.module#TransferencesModule'
       }
     ]
   }

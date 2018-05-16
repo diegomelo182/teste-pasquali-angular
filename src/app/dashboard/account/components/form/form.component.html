@@ -74,3 +74,19 @@
     <button routerLink="/admin/accounts" type="button" class="btn btn-secundary">Cancelar</button>
   </div>
 </form>
+
+<hr *ngIf="item?.childs.length > 0">
+
+<div *ngIf="item?.childs.length > 0" class="row">
+  <div class="col-md-3" *ngFor="let item of item.childs"x>
+    <div class="card text-white bg-secondary mb-3">
+      <div class="card-header">Conta filha</div>
+      <div class="card-body">
+        <h5 class="card-title">{{ item.name }}</h5>
+
+        <p class="card-text">Data Cadastro: {{ item.init_date | date: 'dd/MM/yyy' }}</p>
+        <p class="card-text">Saldo: {{ item.balance | currency: 'BRL' }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -108,7 +108,7 @@ export class FormComponent implements OnInit {
         form.account.balance = 0;
       }
       if (form.account.kind === 'matrix') {
-        form.parent_account_id = null;
+        delete form.account.parent_account_id;
       }
       this.sendData.emit({ form, create: this.create });
     } else {

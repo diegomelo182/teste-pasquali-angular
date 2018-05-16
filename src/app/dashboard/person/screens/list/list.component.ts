@@ -52,4 +52,22 @@ export class ListComponent implements OnInit {
     }
   }
 
+  deleteConfirmation = (itemId: number, itemName: string) => {
+    if (confirm(`Você tem certeza que deseja excluir ${itemName}?`)) {
+      this.loading = true;
+      this.personService.remove(itemId)
+        .subscribe(
+          (response) => {
+            alert('Item excluído com sucesso.');
+            this.loading = false;
+            this.fetchData();
+          },
+          (response) => {
+            this.loading = false;
+            alert('Erro ao executar a ação, favor tente novamente mais tarde.');
+          }
+        );
+    }
+  }
+
 }

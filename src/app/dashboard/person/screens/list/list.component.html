@@ -36,6 +36,7 @@
               <th scope="col">Nome</th>
               <th scope="col">CPF</th>
               <th scope="col">Data Nascimento</th>
+              <th scope="col">Opções</th>
             </tr>
           </thead>
           <tbody>
@@ -44,6 +45,15 @@
               <td>{{ item.name }}</td>
               <td>{{ item.cpf_cnpj }}</td>
               <td>{{ item.bday | date: 'dd/MM/yyyy' }}</td>
+              <td>
+                <button class="btn btn-sm btn-info" title="editar">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+
+                <button class="btn btn-sm btn-danger" (click)="deleteConfirmation(item.id, item.name)" title="excluir">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -55,6 +65,7 @@
               <th scope="col">Nome Fantasia</th>
               <th scope="col">Razão Social</th>
               <th scope="col">CNPJ</th>
+              <th scope="col">Opções</th>
             </tr>
           </thead>
           <tbody>
@@ -63,6 +74,15 @@
               <td>{{ item.business_name }}</td>
               <td>{{ item.name }}</td>
               <td>{{ item.cpf_cnpj }}</td>
+              <td>
+                  <button class="btn btn-sm btn-info" title="editar">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  </button>
+
+                  <button class="btn btn-sm btn-danger" (click)="deleteConfirmation(item.id, item.name)" title="excluir">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  </button>
+                </td>
             </tr>
           </tbody>
         </table>

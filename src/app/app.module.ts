@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginService } from './login/login.service';
 import { InterceptorService } from './shared/interceptors/interceptor.service';
+import { RouterGuardService } from './router-guard.service';
 
 const modules = [
   BrowserModule,
@@ -23,6 +24,7 @@ const components = [
 
 const services = [
   LoginService,
+  RouterGuardService,
   { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
 ];
 

@@ -29,8 +29,9 @@ export class CreateEditComponent implements OnInit {
   }
 
   submit = (data) => {
-    this.loading = true;
-    this.personService.create(data)
+    if (data.create) {
+      this.loading = true;
+      this.personService.create(data.form)
       .subscribe(
         (response) => {
           this.loading = false;
@@ -43,6 +44,7 @@ export class CreateEditComponent implements OnInit {
           this.error = true;
         }
       );
+    }
   }
 
 }

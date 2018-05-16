@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
+import { RouterGuardService } from './router-guard.service';
 
 const routes: Routes = [
   {
@@ -10,7 +11,10 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: './dashboard/dashboard.module#DashboardModule'
+    loadChildren: './dashboard/dashboard.module#DashboardModule',
+    canActivate: [
+      RouterGuardService
+    ]
   }
 ];
 

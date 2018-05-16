@@ -18,7 +18,7 @@ import {
 })
 export class FormComponent implements OnInit {
   @Input() create = true;
-  @Input() item = {};
+  @Input() item: any = {};
   @Input()
   set personType(personType: number) {
     this._personType = personType;
@@ -48,15 +48,15 @@ export class FormComponent implements OnInit {
       this.form = this.formBuilder.group({
         person: this.formBuilder.group({
           cpf_cnpj: this.formBuilder.control(
-            '',
+            this.item && this.item.cpf_cnpj ? this.item.cpf_cnpj : '',
             [Validators.required, Validators.minLength(14)]
           ),
           name: this.formBuilder.control(
-            '',
+            this.item && this.item.name ? this.item.name : '',
             [Validators.required, Validators.minLength(3), Validators.maxLength(254)]
           ),
           bday: this.formBuilder.control(
-            '',
+            this.item && this.item.bday ? this.item.bday : '',
             [
               Validators.required,
               Validators.minLength(10),
@@ -69,15 +69,15 @@ export class FormComponent implements OnInit {
       this.form = this.formBuilder.group({
         person: this.formBuilder.group({
           cpf_cnpj: this.formBuilder.control(
-            '',
+            this.item && this.item.cpf_cnpj ? this.item.cpf_cnpj : '',
             [Validators.required, Validators.minLength(18)]
           ),
           name: this.formBuilder.control(
-            '',
+            this.item && this.item.name ? this.item.name : '',
             [Validators.required, Validators.minLength(3), Validators.maxLength(254)]
           ),
           business_name: this.formBuilder.control(
-            '',
+            this.item && this.item.business_name ? this.item.business_name : '',
             [Validators.required, Validators.minLength(3), Validators.maxLength(254)]
           )
         })
@@ -90,7 +90,7 @@ export class FormComponent implements OnInit {
       this.error = false;
       const form = this.form.value;
       form.person.kind = this._personType;
-      this.sendData.emit(form);
+      this.sendData.emit({ form, create: this.create });
     } else {
       this.error = true;
     }

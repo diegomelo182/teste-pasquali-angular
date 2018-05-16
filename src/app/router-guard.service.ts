@@ -5,7 +5,6 @@ import {
   RouterStateSnapshot,
   Router
 } from '@angular/router';
-import { JwtHelper } from 'angular2-jwt';
 
 @Injectable({
   providedIn: 'root'

@@ -1,3 +1,76 @@
-<p>
-  form works!
-</p>
+<form class="text-left" *ngIf="form" (ngSubmit)="submit()" [formGroup]="form" [ngClass]="{ 'd-none':  loading }">
+  <div class="alert alert-danger" role="alert" *ngIf="error">
+    Erro na validação dos campos, favor verifique se os dados estão preenchidos corretamente
+  </div>
+
+  <div formGroupName="account">
+    <div class="form-group">
+      <label for="inputName">Nome</label>
+      <input type="text" class="form-control" formControlName="name" id="inputName" aria-describedby="inputNameHelp">
+      <small *ngIf="form.get('account.name').touched && !form.get('account.name').valid" id="inputNameHelp" class="form-text text-muted">Campo inválido.</small>
+      <small *ngIf="_apiErrors['name']">
+        <span *ngFor="let error of _apiErrors['name']">{{error}}</span>
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="inputInitDate">Data de criação</label>
+      <input type="text" [textMask]="{mask: dateMask, guide: false}" class="form-control" formControlName="init_date" id="inputInitDate" aria-describedby="inputInitDateHelp">
+      <small *ngIf="form.get('account.init_date').touched && !form.get('account.init_date').valid" id="inputInitDateHelp" class="form-text text-muted">Campo inválido.</small>
+      <small *ngIf="_apiErrors['init_date']">
+        <span *ngFor="let error of _apiErrors['init_date']">{{error}}</span>
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="inputStatus">Status</label>
+      <select class="form-control" id="inputStatus" formControlName="status">
+        <option value="activated">Ativo</option>
+        <option value="blocked">Bloqueado</option>
+        <option value="canceled">Cancelado</option>
+      </select>
+      <small *ngIf="form.get('account.status').touched && !form.get('account.status').valid" id="inputInitDateHelp" class="form-text text-muted">Campo inválido.</small>
+      <small *ngIf="_apiErrors['status']">
+        <span *ngFor="let error of _apiErrors['status']">{{error}}</span>
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="inputKind">Tipo</label>
+      <select class="form-control" id="inputKind" formControlName="kind">
+        <option value="matrix">Matriz</option>
+        <option value="units" *ngIf="parentAccounts && parentAccounts.length > 0">Filial</option>
+      </select>
+      <small *ngIf="form.get('account.kind').touched && !form.get('account.kind').valid" id="inputInitDateHelp" class="form-text text-muted">Campo inválido.</small>
+      <small *ngIf="_apiErrors['kind']">
+        <span *ngFor="let error of _apiErrors['kind']">{{error}}</span>
+      </small>
+    </div>
+
+    <div class="form-group" *ngIf="form.get('account.kind').value === 'units'">
+      <label for="inputKind">Conta pai</label>
+      <select class="form-control" id="inputKind" formControlName="parent_account_id">
+        <option *ngFor="let item of parentAccounts" [value]="item.id">{{ item.name }}</option>
+      </select>
+      <small *ngIf="form.get('account.parent_account_id').touched && !form.get('account.parent_account_id').valid" id="inputInitDateHelp" class="form-text text-muted">Campo inválido.</small>
+      <small *ngIf="_apiErrors['parent_account_id']">
+        <span *ngFor="let error of _apiErrors['parent_account_id']">{{error}}</span>
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="inputKind">Pessoa</label>
+      <select class="form-control" id="inputKind" formControlName="person_id">
+        <option value="">Selecione uma pessoa</option>
+        <option *ngFor="let item of people" [value]="item.id">{{ item.name }}</option>
+      </select>
+      <small *ngIf="form.get('account.person_id').touched && !form.get('account.person_id').valid" id="inputInitDateHelp" class="form-text text-muted">Campo inválido.</small>
+      <small *ngIf="_apiErrors['person_id']">
+        <span *ngFor="let error of _apiErrors['person_id']">{{error}}</span>
+      </small>
+    </div>
+
+    <button [disabled]="!form.valid || loading" type="submit" class="btn btn-primary">{{ loading ? 'Carregando...' : 'Enviar'}}</button>
+    <button routerLink="/admin/accounts" type="button" class="btn btn-secundary">Cancelar</button>
+  </div>
+</form>

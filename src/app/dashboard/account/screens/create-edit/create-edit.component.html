@@ -1,3 +1,17 @@
-<p>
-  create-edit works!
-</p>
+<div class="container">
+  <h2 *ngIf="isCreate === true; else edit">Cadastrar</h2>
+  <ng-template #edit>
+    <h2>Editar</h2>
+  </ng-template>
+
+  <p class="loading" *ngIf="loading">Carregando...</p>
+
+  <app-form
+    *ngIf="!loading"
+    [ngClass]="{ 'd-none': loading }"
+    [create]="isCreate"
+    [item]="item"
+    [apiErrors]="apiError"
+    (sendData)="submit($event)"
+  ></app-form>
+</div>

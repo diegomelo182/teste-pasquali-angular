@@ -1,3 +1,74 @@
-<p>
-  list works!
-</p>
+<div class="container">
+    <h2>Contas</h2>
+
+    <div class="alert alert-success" role="alert" *ngIf="success">
+      Cadastro/Edição realizada com successo!
+    </div>
+
+    <div class="button-container">
+      <button routerLink="create" class="btn btn-primary">
+        Adicionar
+      </button>
+    </div>
+
+    <div class="card text-center">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a class="nav-link" (click)="changeType(0)" [ngClass]="{ 'active': accountType === 0  }">Matrizes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="changeType(1)" [ngClass]="{ 'active': accountType === 1  }">Filiais</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <div *ngIf="loading" class="text-center">
+          Carregando...
+        </div>
+
+        <div class="tables" *ngIf="!error || loading">
+          <table class="table table-sm table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Saldo em conta</th>
+                <th scope="col">Pessoa</th>
+                <th scope="col">Status</th>
+                <th scope="col">Data criação</th>
+                <th scope="col">Opções</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of items">
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.name }}</td>
+                <td>{{ item.balance | currency: 'BRL' }}</td>
+                <td>{{ item.person?.name}}</td>
+                <td>{{ getStatus(item.status) }}</td>
+                <td>{{ item.init_date | date: 'dd/MM/yyyy' }}</td>
+                <td>
+                  <button class="btn btn-sm btn-info" [routerLink]="['edit', item.id]" title="editar">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  </button>
+
+                  <button class="btn btn-sm btn-danger" (click)="deleteConfirmation(item.id, item.name)" title="excluir">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr *ngIf="items.length === 0">
+                <td colspan="7">Nenhum item para esta sessão.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="error" class="error">
+          <p>Erro ao carregar os dados</p>
+          <button (click)="fetchData()" class="btn btn-primary">Tentar novamente</button>
+        </div>
+      </div>
+    </div>
+  </div>

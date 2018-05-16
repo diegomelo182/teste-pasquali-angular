@@ -8,18 +8,27 @@
       <label for="inputName">Nome</label>
       <input type="text" class="form-control" formControlName="name" id="inputName" aria-describedby="inputNameHelp">
       <small *ngIf="form.get('person.name').touched && !form.get('person.name').valid" id="inputNameHelp" class="form-text text-muted">Campo inválido.</small>
+      <small *ngIf="_apiErrors['name']">
+        <span *ngFor="let error of _apiErrors['name']">{{error}}</span>
+      </small>
     </div>
 
     <div class="form-group">
       <label for="inputCpf">CPF</label>
       <input type="text" [textMask]="{mask: cpfMask, guide: false}" class="form-control" formControlName="cpf_cnpj" id="inputCpf" aria-describedby="inputCpfHelp">
       <small *ngIf="form.get('person.cpf_cnpj').touched && !form.get('person.cpf_cnpj').valid" id="inputCpfHelp" class="form-text text-muted">Campo inválido.</small>
+      <small *ngIf="_apiErrors['cpf_cnpj']">
+        <span *ngFor="let error of _apiErrors['cpf_cnpj']">{{error}}</span>
+      </small>
     </div>
 
     <div class="form-group">
       <label for="inputBday">Data aniversário</label>
       <input type="text" [textMask]="{mask: dateMask, guide: false}" class="form-control" formControlName="bday" id="inputBday" aria-describedby="inputBdayHelp">
       <small *ngIf="form.get('person.bday').touched && !form.get('person.bday').valid" id="inputBdayHelp" class="form-text text-muted">Campo inválido.</small>
+      <small *ngIf="_apiErrors['bday']">
+        <span *ngFor="let error of _apiErrors['bday']">{{error}}</span>
+      </small>
     </div>
 
     <button [disabled]="!form.valid || loading" type="submit" class="btn btn-primary">{{ loading ? 'Carregando...' : 'Enviar'}}</button>
@@ -38,18 +47,27 @@
         <label for="inputName">Nome Fantasia</label>
         <input type="text" class="form-control" formControlName="name" id="inputName" aria-describedby="inputNameHelp">
         <small *ngIf="form.get('person.name').touched && !form.get('person.name').valid" id="inputNameHelp" class="form-text text-muted">Campo inválido.</small>
+        <small *ngIf="_apiErrors['name']">
+          <span *ngFor="let error of _apiErrors['name']">{{error}}</span>
+        </small>
       </div>
 
       <div class="form-group">
         <label for="inputBusinessName">Razão Social</label>
         <input type="text" class="form-control" formControlName="business_name" id="inputBusinessName" aria-describedby="inputBusinessNameHelp">
         <small *ngIf="form.get('person.business_name').touched && !form.get('person.business_name').valid" id="inputBusinessNameHelp" class="form-text text-muted">Campo inválido.</small>
+        <small *ngIf="_apiErrors['business_name']">
+          <span *ngFor="let error of _apiErrors['business_name']">{{error}}</span>
+        </small>
       </div>
 
       <div class="form-group">
         <label for="inputCpf">CNPJ</label>
         <input type="text" [textMask]="{mask: cnpjMask, guide: false}" class="form-control" formControlName="cpf_cnpj" id="inputCpf" aria-describedby="inputCpfHelp">
         <small *ngIf="form.get('person.cpf_cnpj').touched && !form.get('person.cpf_cnpj').valid" id="inputCpfHelp" class="form-text text-muted">Campo inválido.</small>
+        <small *ngIf="_apiErrors['cpf_cnpj']">
+          <span *ngFor="let error of _apiErrors['cpf_cnpj']">{{error}}</span>
+        </small>
       </div>
 
       <button [disabled]="!form.valid || loading" type="submit" class="btn btn-primary">{{ loading ? 'Carregando...' : 'Enviar'}}</button>

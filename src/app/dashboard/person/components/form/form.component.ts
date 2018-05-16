@@ -21,6 +21,10 @@ export class FormComponent implements OnInit {
   @Input() create = true;
   @Input() item: any = {};
   @Input()
+  set apiErrors(apiErrors: any) {
+    this._apiErrors = apiErrors;
+  }
+  @Input()
   set personType(personType: number) {
     this._personType = personType;
     this.formInit();
@@ -28,6 +32,7 @@ export class FormComponent implements OnInit {
 
   @Output() sendData = new EventEmitter<any>();
 
+  _apiErrors = {};
   _personType = 0;
   form: FormGroup;
   error = false;

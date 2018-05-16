@@ -16,6 +16,7 @@ export class CreateEditComponent implements OnInit {
   personType = 0;
   loading = false;
   error = false;
+  apiError = {};
   item = {};
 
   constructor(
@@ -66,6 +67,7 @@ export class CreateEditComponent implements OnInit {
         (response) => {
           this.loading = false;
           this.error = true;
+          this.apiError = response.error;
         }
       );
     } else {
@@ -80,6 +82,7 @@ export class CreateEditComponent implements OnInit {
           (response) => {
             this.loading = false;
             this.error = true;
+            this.apiError = response.error;
           }
         );
     }

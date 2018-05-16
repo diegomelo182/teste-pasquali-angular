@@ -10,6 +10,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-form',
@@ -36,7 +37,8 @@ export class FormComponent implements OnInit {
   cnpjMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/,  /\d/, /\d/, /\d/, '-',  /\d/,  /\d/];
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
@@ -56,7 +58,7 @@ export class FormComponent implements OnInit {
             [Validators.required, Validators.minLength(3), Validators.maxLength(254)]
           ),
           bday: this.formBuilder.control(
-            this.item && this.item.bday ? this.item.bday : '',
+            this.item && this.item.bday ? this.datePipe.transform(this.item.bday, 'dd/MM/yyyy') : '',
             [
               Validators.required,
               Validators.minLength(10),

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
@@ -11,7 +11,9 @@ const modules = [
   TextMaskModule
 ];
 
-const services = [];
+const services = [
+  DatePipe
+];
 
 @NgModule({
   imports: [
@@ -21,6 +23,9 @@ const services = [];
     ...modules,
     ...services
   ],
-  declarations: []
+  declarations: [],
+  providers: [
+    ...services
+  ]
 })
 export class SharedModule { }

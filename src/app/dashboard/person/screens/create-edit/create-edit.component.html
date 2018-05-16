@@ -12,9 +12,11 @@
   <p class="loading" *ngIf="loading">Carregando...</p>
 
   <app-form
+    *ngIf="!loading"
     [ngClass]="{ 'd-none': loading }"
     [create]="isCreate"
     [personType]="personType"
+    [item]="item"
     (sendData)="submit($event)"
   ></app-form>
 </div>

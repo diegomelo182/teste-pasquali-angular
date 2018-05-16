@@ -46,7 +46,7 @@
               <td>{{ item.cpf_cnpj }}</td>
               <td>{{ item.bday | date: 'dd/MM/yyyy' }}</td>
               <td>
-                <button class="btn btn-sm btn-info" title="editar">
+                <button class="btn btn-sm btn-info" [routerLink]="['edit', item.id]" title="editar">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </button>
 
@@ -75,7 +75,7 @@
               <td>{{ item.name }}</td>
               <td>{{ item.cpf_cnpj }}</td>
               <td>
-                  <button class="btn btn-sm btn-info" title="editar">
+                  <button class="btn btn-sm btn-info" [routerLink]="['edit', item.id]" title="editar">
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </button>
 

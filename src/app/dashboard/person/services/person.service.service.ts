@@ -14,6 +14,8 @@ export class PersonService {
 
   index = (params = {}) => this.httpClient.get(`${environment.apiHost}people`, { params });
 
+  show = (id) => this.httpClient.get(`${environment.apiHost}people/${id}`);
+
   create = (params = {}) => this.httpClient.post(`${environment.apiHost}people`, params);
 
   update = (id, params = {}) => this.httpClient.put(`${environment.apiHost}people/${id}`, params);
